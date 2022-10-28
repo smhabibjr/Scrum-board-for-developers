@@ -1,5 +1,5 @@
 {
-  "name": "electron-crud-template-with-mysql",
+  "name": "scrum-board",
   "version": "1.0.0",
   "description": "",
   "main": "src/index.js",
@@ -7,7 +7,7 @@
     "start": "electron ."
   },
   "keywords": [],
-  "author": "",
+  "author": "Habib Rahman",
   "license": "ISC",
   "dependencies": {
     "electron": "^8.2.0",

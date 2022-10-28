@@ -5,10 +5,8 @@ const main = remote.require("./main");
   var modal = document.querySelector("#modalbox-with-form");
   var btn_open_modal_box = document.querySelector("#add-new-task");
   var btn_modalbox_close = document.querySelector("#btn-modalbox-close");
-  var dropping = false;
 
   function drag_and_drop() {
-    console.log("draganddrop called");
     const items = document.querySelectorAll(".task-item");
     const columns = document.querySelectorAll(".item-column");
     items.forEach((item) => {
