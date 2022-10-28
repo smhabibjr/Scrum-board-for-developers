@@ -6,7 +6,8 @@ const main = remote.require("./main");
   var btn_open_modal_box = document.querySelector("#add-new-task");
   var btn_modalbox_close = document.querySelector("#btn-modalbox-close");
 
-  function drag_and_drop() {
+  //drag and drop using vanila js
+  /*function drag_and_drop() {
     const items = document.querySelectorAll(".task-item");
     const columns = document.querySelectorAll(".item-column");
     items.forEach((item) => {
@@ -34,15 +35,10 @@ const main = remote.require("./main");
       console.log("item droped");
       this.append(dropItem);
     }
-  }
+  }*/
 
-
-
-  
-
-
-  $(".sortable").sortable({
-    connectWith: ".sortable",
+  $(".drag-and-sortable").sortable({
+    connectWith: ".drag-and-sortable",
     cursor: "grabbing",
   });
 
@@ -80,15 +76,14 @@ const main = remote.require("./main");
     if (form_validation()) {
       var add_new_task = $(".clone-new-task")
         .clone()
-        .removeClass("clone-new-task d-none")
-        .addClass("new-task-iteam");
+        .removeClass("clone-new-task d-none");
       add_new_task.find(".task-category-name").text(new_category);
       add_new_task.find(".single-task-name").text(new_task);
       add_new_task.find(".task-submit-date").text("submit : " + new_date);
       add_new_task.find(".task-due-date").text("Due " + due_days + " days");
       $("#todo-task-list").append(add_new_task);
       modal.style.display = "none";
-      drag_and_drop();
+      //drag_and_drop();
     } else {
     }
   });
