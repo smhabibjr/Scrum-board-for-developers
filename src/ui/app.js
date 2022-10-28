@@ -36,7 +36,17 @@ const main = remote.require("./main");
     }
   }
 
-  drag_and_drop();
+
+
+  
+
+
+  $(".sortable").sortable({
+    connectWith: ".sortable",
+    cursor: "grabbing",
+  });
+
+  //drag_and_drop();
   btn_open_modal_box.onclick = function () {
     modal.style.display = "block";
   };

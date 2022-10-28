@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Scrum Board</title>
     <link rel="stylesheet" href="./UI-dependencies/bootstrap.min.css" />
+    <link rel="stylesheet" href="./UI-dependencies/jquery-ui-1.13.2.css">
     <script src="./UI-dependencies/popper.min.js"></script>
     <script src="./UI-dependencies/bootstrap.bundle.min.js"></script>
     <script src="./UI-dependencies/jquery-3.6.1.min.js"></script>
@@ -13,6 +14,8 @@
       window.$ =
         window.jQuery = require("./UI-dependencies/jquery-3.6.1.min.js");
     </script>
+
+    <script src="./UI-dependencies/jquery-ui-1.13.2.js"></script>
     <script
       src="https://kit.fontawesome.com/ea63e2648f.js"
       crossorigin="anonymous"
@@ -46,7 +49,7 @@
         <div class="bg-secondary card">
           <h5 class="d-flex justify-content-center text-white p-1">TODO (2)</h5>
 
-          <div id="todo-task-list" class="list-group item-column">
+          <div id="todo-task-list" class="list-group item-column sortable">
 
             <!-- single iteam -->
             <div draggable="true" class="card m-1 list-group-item task-item">
@@ -85,7 +88,7 @@
         <div class="bg-secondary card">
           <h5 class="d-flex justify-content-center text-white p-1">IN PROGRESS (2)</h5>
 
-          <div id="inprogress-list" class="list-group item-column">
+          <div id="inprogress-list" class="list-group item-column sortable">
             <!-- single iteam -->
             <div draggable="true" class="card m-1 list-group-item task-item">
               <div class="row d-flex justify-content-between">
@@ -120,7 +123,7 @@
         <div class="bg-secondary card">
           <h5 class="d-flex justify-content-center text-white p-1">REVIEW (2)</h5>
 
-          <div id="preview-list" class="list-group item-column">
+          <div id="preview-list" class="list-group item-column sortable">
 
             <!-- single iteam -->
             <div draggable="true" class="card m-1 list-group-item task-item">
@@ -157,7 +160,7 @@
         <div class="bg-secondary card">
           <h5 class="d-flex justify-content-center text-white p-1">DONE (2)</h5>
 
-          <div id="done-list" class="list-group item-column">
+          <div id="done-list" class="list-group item-column sortable">
 
             <!-- single iteam -->
             <div draggable="true" class="card m-1 list-group-item task-item">
