@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Electron crud template with mySql</title>
+    <link rel="stylesheet" href="./UI-dependencies/bootstrap.min.css" />
+    <script src="./UI-dependencies/popper.min.js"></script>
+    <script src="./UI-dependencies/bootstrap.bundle.min.js"></script>
+    <script src="./UI-dependencies/jquery-3.6.1.min.js"></script>
+    <script>
+      window.$ =
+        window.jQuery = require("./UI-dependencies/jquery-3.6.1.min.js");
+    </script>
+    <script
+      src="https://kit.fontawesome.com/ea63e2648f.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./app.css" />
+  </head>
+  <body>
+
+   <div class="row p-2 m-1">
+      <div class="col-6 d-flex justify-content-start">
+        <h1 id="head-text" class="head-text">Entwicklungsplan</h1>
+      </div>
+    </div>
+
+    <div class="row p-2 m-1">
+      <div class="col-6 d-flex justify-content-start">
+        <h4>Research, ideate and present your brand concepts</h4>
+      </div>
+      <div class="col-6 d-flex justify-content-end">
+        <button
+          id="add-new-task"
+          class="border btn btn-primary"
+        >
+          Add
+        </button>
+      </div>
+    </div>
+
+    <div class="row p-2 m-1">
+      <div class="col-3">
+        <div class="bg-secondary card">
+          <h5 class="d-flex justify-content-center text-white p-1">TODO (2)</h5>
+
+          <div id="todo-task-list" class="list-group item-column">
+
+            <!-- single iteam -->
+            <div draggable="true" class="card m-1 list-group-item task-item">
+              <div class="row d-flex justify-content-between">
+                <div class="col-10">
+                  <h6>Testing</h6>
+                </div>
+                <div class="col-2">
+                  <i class="fas fa-ellipsis-vertical"></i>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12">
+                  <h5>Device Testing</h5>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-6">
+                  <p>submit : 25.10.2022</p>
+                </div>
+                <div class="col-6 d-flex justify-content-end">
+                  <p>Due 10 days</p>
+                </div>
+              </div>
+            </div>
+            <!-- single iteam end-->
+            
+           
+          </div>
+        </div>
+      </div>
+
+      <div class="col-3">
+        <div class="bg-secondary card">
+          <h5 class="d-flex justify-content-center text-white p-1">IN PROGRESS (2)</h5>
+
+          <div id="inprogress-list" class="list-group item-column">
+            <!-- single iteam -->
+            <div draggable="true" class="card m-1 list-group-item task-item">
+              <div class="row d-flex justify-content-between">
+                <div class="col-10">
+                  <h6>Frontend</h6>
+                </div>
+                <div class="col-2">
+                  <i class="fas fa-ellipsis-vertical"></i>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12">
+                  <h5>Email Template</h5>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-6">
+                  <p>submit : 25.10.2022</p>
+                </div>
+                <div class="col-6 d-flex justify-content-end">
+                  <p>Due 10 days</p>
+                </div>
+              </div>
+            </div>
+            <!-- single iteam end-->
+          </div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="bg-secondary card">
+          <h5 class="d-flex justify-content-center text-white p-1">REVIEW (2)</h5>
+
+          <div id="preview-list" class="list-group item-column">
+
+            <!-- single iteam -->
+            <div draggable="true" class="card m-1 list-group-item task-item">
+              <div class="row d-flex justify-content-between">
+                <div class="col-10">
+                  <h6>Backend</h6>
+                </div>
+                <div class="col-2">
+                  <i class="fas fa-ellipsis-vertical"></i>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12">
+                  <h5>Email CRUD</h5>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-6">
+                  <p>submit : 25.10.2022</p>
+                </div>
+                <div class="col-6 d-flex justify-content-end">
+                  <p>Due 10 days</p>
+                </div>
+              </div>
+            </div>
+            <!-- single iteam end-->
+            
+          </div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="bg-secondary card">
+          <h5 class="d-flex justify-content-center text-white p-1">DONE (2)</h5>
+
+          <div id="done-list" class="list-group item-column">
+
+            <!-- single iteam -->
+            <div draggable="true" class="card m-1 list-group-item task-item">
+              <div class="row d-flex justify-content-between">
+                <div class="col-10">
+                  <h6>Initial Client Meeting</h6>
+                </div>
+                <div class="col-2">
+                  <i class="fas fa-ellipsis-vertical"></i>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12">
+                  <h5>This is task name</h5>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-6">
+                  <p>submit : 25.10.2022</p>
+                </div>
+                <div class="col-6 d-flex justify-content-end">
+                  <p>Due 10 days</p>
+                </div>
+              </div>
+            </div>
+            <!-- single iteam end-->
+            
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+
+    <!-- single iteam -->
+            <div draggable="true" class="clone-new-task d-none card m-1 list-group-item task-item">
+              <div class="row d-flex justify-content-between">
+                <div class="col-10">
+                  <h6 class="task-category-name">Initial Client Meeting</h6>
+                </div>
+                <div class="col-2">
+                  <i class="fas fa-ellipsis-vertical"></i>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12">
+                  <h5 class="single-task-name">This is task name</h5>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-6">
+                  <p class="task-submit-date">submit : 25.10.2022</p>
+                </div>
+                <div class="col-6 d-flex justify-content-end">
+                  <p class="task-due-date">Due 10 days</p>
+                </div>
+              </div>
+            </div>
+            <!-- single iteam end-->
+
+
+
+
+    <!-- Modal box with form -->
+    <div
+      class="modalbox-with-form card"
+      id="modalbox-with-form"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add new task</h5>
+            <button
+              type="button"
+              class="btn-close"
+              id="btn-modalbox-close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-6">
+                <label for="category" class="form-label">Category</label>
+                <select class="form-select input-fields validation" id="category" required>
+                  <option selected value="">Choose...</option>
+                  <option value="Administration">Administration</option>
+                  <option value="UX/UI Design">UX/UI Design</option>
+                  <option value="Fontend Design">Fontend Design</option>
+                  <option value="Backend">Backend</option>
+                </select>
+              </div>
+
+              <div class="col-6">
+                <label for="date" class="form-label">Submit Date</label>
+                <input
+                  class="form-control input-fields validation"
+                  data-date-format="DD MMMM YYYY"
+                  id="date"
+                  type="date"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12">
+                <label for="task" class="form-label">Task</label>
+                <input id="task" class="form-control input-fields validation" type="text" required />
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              id="btn-add-new-iteam"
+              class="btn btn-primary"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal box with form end -->
+
+
+
+   
+<!-- 
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6 p-4 my-auto">
+          <form class="card card-body" id="productForm">
+            <div class="form-group p-2">
+              <input
+                type="text"
+                id="name"
+                placeholder="Product name"
+                class="form-control"
+                autofocus
+              />
+            </div>
+
+            <div class="form-group p-2">
+              <input
+                type="number"
+                id="price"
+                step="any"
+                class="form-control"
+                placeholder="Product price"
+              />
+            </div>
+
+            <div class="form-group p-2">
+              <textarea class="w-100" id="description"></textarea>
+            </div>
+
+            <button class="btn btn-primary">save</button>
+          </form>
+        </div>
+
+        <div class="col-md-6">
+          <div id="products"></div>
+        </div>
+      </div>
+    </div>
+
+    -->
+    <script src="./app.js"></script>
+  </body>
+</html>
