@@ -14,40 +14,6 @@ $(document).ready(function () {
   var btn_open_modal_box = document.querySelector("#add-new-task");
   var btn_modalbox_close = document.querySelector("#btn-modalbox-close");
 
-  //drag and drop using vanila js
-  /*function drag_and_drop() {
-    const items = document.querySelectorAll(".task-item");
-    const columns = document.querySelectorAll(".item-column");
-    items.forEach((item) => {
-      $(item).off();
-      $(item).on("dragstart", dragStart);
-    });
-
-    columns.forEach((column) => {
-      $(column).off();
-      $(column).on("dragover", drag_over);
-      $(column).on("drop", drop_item);
-    });
-
-    function drag_over(e) {
-      e.preventDefault();
-    }
-
-    let dropItem = null;
-    function dragStart() {
-      console.log("drag started");
-      dropItem = this;
-    }
-
-    function drop_item(e) {
-      console.log("item droped");
-      this.append(dropItem);
-    }
-  }*/
-
-
-  
-
   $(".drag-and-sortable").sortable({
     connectWith: ".drag-and-sortable",
     cursor: "grabbing",

@@ -52,12 +52,6 @@ a[data-toggle="collapse"] {
     font-size: 20px;
 }
 
-#sidebar .list-group .list-group-item:hover {
-    color: black;
-    background-color: white;
-}
-
-
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */
