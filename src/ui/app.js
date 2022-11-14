@@ -2,7 +2,7 @@ const { remote } = require("electron");
 const main = remote.require("./main");
 
 $(document).ready(function () {
-  $("#sidebar").toggleClass("active");
+  //$("#sidebar").toggleClass("active");
   $("#sidebarCollapse").on("click", function () {
     $("#sidebar").toggleClass("active");
   });
