@@ -2,8 +2,9 @@ const { remote } = require("electron");
 const main = remote.require("./main");
 
 $(document).ready(function () {
-  //$("#sidebar").toggleClass("active");
+  $("#sidebar").toggleClass("active");
   $("#sidebarCollapse").on("click", function () {
+    $("#collapsible-icon").toggleClass("fa-bars fa-times");
     $("#sidebar").toggleClass("active");
   });
 });

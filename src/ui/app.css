@@ -36,8 +36,6 @@ body {
 #sidebar {
   min-width: 250px;
   max-width: 250px;
-  background:#7386d5;
-  color: #fff;
   transition: all 0.3s;
 }
 
@@ -46,15 +44,17 @@ body {
   margin-left: -250px;
 }
 
-
-#sidebar .sidebar-header {
-  padding: 20px;
-  background: #6d7fcc;
-}
-
-
 a[data-toggle="collapse"] {
   position: relative;
+}
+
+#sidebar .list-group .list-group-item{
+    font-size: 20px;
+}
+
+#sidebar .list-group .list-group-item:hover {
+    color: black;
+    background-color: white;
 }
 
 
@@ -64,9 +64,14 @@ a[data-toggle="collapse"] {
 
 #content {
   width: 100%;
-  padding: 20px;
+
   min-height: 100vh;
   transition: all 0.3s;
+}
+
+.content-navbar{
+    margin-left: 1px ;
+    margin-right: 4px;
 }
 
 /* ---------------------------------------------------
@@ -80,7 +85,5 @@ a[data-toggle="collapse"] {
   #sidebar.active {
     margin-left: 0;
   }
-  #sidebarCollapse span {
-    display: none;
-  }
+
 }

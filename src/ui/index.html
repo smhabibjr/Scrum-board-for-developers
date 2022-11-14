@@ -24,33 +24,423 @@
   <body>
     <div class="wrapper">
       <!-- Sidebar  -->
-      <nav id="sidebar">
+      <nav class="bg-secondary text-light" id="sidebar">
         <div class="sidebar-header">
-          <h3>Bootstrap Sidebar</h3>
+          <h3 class="p-2">Entwicklungsplan</h3>
+        </div>
+
+        <div class="list-group mt-3" id="list-tab" role="tablist">
+          <a
+            class="list-group-item bg-secondary text-light border-0"
+            data-bs-toggle="list"
+            href="#dashboard-section"
+          >
+            <i class="fa-solid fa-gauge"></i> Dashboard
+          </a>
+          <a
+            class="list-group-item bg-secondary text-light border-0"
+            data-bs-toggle="list"
+            href="#myprofile-section"
+          >
+            <i class="fa-solid fa-user"></i> My Task</a
+          >
+          <a
+            class="list-group-item bg-secondary text-light border-0"
+            data-bs-toggle="list"
+            href="#setting-section"
+            ><i class="fa-sharp fa-solid fa-gear"></i> Setting</a
+          >
+          <a
+            class="list-group-item bg-secondary text-light border-0"
+            data-bs-toggle="list"
+            href="#logout-section"
+            ><i class="fa-solid fa-right-from-bracket"></i> Log out</a
+          >
         </div>
       </nav>
 
       <!-- Page Content  -->
       <div id="content">
-        <nav class="navbar navbar-light bg-light">
-          <div class="container-fluid">
-            <button type="button" id="sidebarCollapse" class="btn btn-dark">
-              <i class="fa-solid fa-bars"></i>
-            </button>
-              <img style="width: 50px; height:50px " src="./asset/user-image/77775.jpg" class="rounded-circle" alt="Cinque Terre">
+        <div class="row p-2 bg-secondary content-navbar">
+          <div class="col-6">
+            <div type="button" id="sidebarCollapse" class="btn btn-dark">
+              <i id="collapsible-icon" class="fa-solid fa-bars"></i>
+            </div>
           </div>
-        </nav>
+          <div class="col-6 d-flex justify-content-end">
+            <img
+              style="width: 40px; height: 40px"
+              src="./asset/user-image/77775.jpg"
+              class="rounded-circle"
+              alt="Cinque Terre"
+            />
+          </div>
+        </div>
 
-        <h2>Collapsible Sidebar Using Bootstrap</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </p>
+        <div class="tab-content" id="nav-tabContent">
+          <div
+            class="tab-pane fade show active"
+            id="dashboard-section"
+            role="tabpanel"
+          >
+            <div class="row p-2 m-1">
+              <div class="col-6 d-flex justify-content-start">
+                <h4>Research, ideate and present your brand concepts</h4>
+              </div>
+              <div class="col-6 d-flex justify-content-end">
+                <button id="add-new-task" class="border btn btn-primary">
+                  Add
+                </button>
+              </div>
+            </div>
+
+            <div class="row p-2 m-1">
+              <div class="col-3">
+                <div class="bg-secondary card">
+                  <h5 class="d-flex justify-content-center text-white p-1">
+                    TODO (2)
+                  </h5>
+
+                  <div
+                    id="todo-task-list"
+                    class="list-group drag-and-sortable"
+                    style="min-height: 100px"
+                  >
+                    <!-- single iteam -->
+                    <div class="card m-1 list-group-item">
+                      <div class="row d-flex justify-content-between">
+                        <div class="col-10">
+                          <h6>Testing</h6>
+                        </div>
+                        <div class="col-2">
+                          <i class="fas fa-ellipsis-vertical"></i>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-12">
+                          <h5>Device Testing</h5>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-6">
+                          <p>submit : 25.10.2022</p>
+                        </div>
+                        <div class="col-6 d-flex justify-content-end">
+                          <p>Due 10 days</p>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- single iteam end-->
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-3">
+                <div class="bg-secondary card">
+                  <h5 class="d-flex justify-content-center text-white p-1">
+                    IN PROGRESS (2)
+                  </h5>
+
+                  <div
+                    id="inprogress-list"
+                    class="list-group drag-and-sortable"
+                    style="min-height: 100px"
+                  >
+                    <!-- single iteam -->
+                    <div class="card m-1 list-group-item">
+                      <div class="row d-flex justify-content-between">
+                        <div class="col-10">
+                          <h6>Frontend</h6>
+                        </div>
+                        <div class="col-2">
+                          <i class="fas fa-ellipsis-vertical"></i>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-12">
+                          <h5>Email Template</h5>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-6">
+                          <p>submit : 25.10.2022</p>
+                        </div>
+                        <div class="col-6 d-flex justify-content-end">
+                          <p>Due 10 days</p>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- single iteam end-->
+                  </div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="bg-secondary card">
+                  <h5 class="d-flex justify-content-center text-white p-1">
+                    REVIEW (2)
+                  </h5>
+
+                  <div
+                    id="preview-list"
+                    class="list-group drag-and-sortable"
+                    style="min-height: 100px"
+                  >
+                    <!-- single iteam -->
+                    <div class="card m-1 list-group-item">
+                      <div class="row d-flex justify-content-between">
+                        <div class="col-10">
+                          <h6>Backend</h6>
+                        </div>
+                        <div class="col-2">
+                          <i class="fas fa-ellipsis-vertical"></i>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-12">
+                          <h5>Email CRUD</h5>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-6">
+                          <p>submit : 25.10.2022</p>
+                        </div>
+                        <div class="col-6 d-flex justify-content-end">
+                          <p>Due 10 days</p>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- single iteam end-->
+                  </div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="bg-secondary card">
+                  <h5 class="d-flex justify-content-center text-white p-1">
+                    DONE (2)
+                  </h5>
+
+                  <div
+                    id="done-list"
+                    class="list-group drag-and-sortable"
+                    style="min-height: 100px"
+                  >
+                    <!-- single iteam -->
+                    <div class="card m-1 list-group-item task-item">
+                      <div class="row d-flex justify-content-between">
+                        <div class="col-10">
+                          <h6>Initial Client Meeting</h6>
+                        </div>
+                        <div class="col-2">
+                          <i class="fas fa-ellipsis-vertical"></i>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-12">
+                          <h5>This is task name</h5>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-6">
+                          <p>submit : 25.10.2022</p>
+                        </div>
+                        <div class="col-6 d-flex justify-content-end">
+                          <p>Due 10 days</p>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- single iteam end-->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- single iteam -->
+            <div
+              class="clone-new-task d-none card m-1 list-group-item drag-and-sortable"
+            >
+              <div class="row d-flex justify-content-between">
+                <div class="col-10">
+                  <h6 class="task-category-name">Initial Client Meeting</h6>
+                </div>
+                <div class="col-2">
+                  <i class="fas fa-ellipsis-vertical"></i>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12">
+                  <h5 class="single-task-name">This is task name</h5>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-6">
+                  <p class="task-submit-date">submit : 25.10.2022</p>
+                </div>
+                <div class="col-6 d-flex justify-content-end">
+                  <p class="task-due-date">Due 10 days</p>
+                </div>
+              </div>
+            </div>
+            <!-- single iteam end-->
+
+            <!-- Modal box with form -->
+            <div class="modalbox-with-form card" id="modalbox-with-form">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                      Add new task
+                    </h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      id="btn-modalbox-close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="row">
+                      <div class="col-6">
+                        <label for="category" class="form-label"
+                          >Category</label
+                        >
+                        <select
+                          class="form-select input-fields validation"
+                          id="category"
+                          required
+                        >
+                          <option selected value="">Choose...</option>
+                          <option value="Administration">Administration</option>
+                          <option value="UX/UI Design">UX/UI Design</option>
+                          <option value="Fontend Design">Fontend Design</option>
+                          <option value="Backend">Backend</option>
+                        </select>
+                      </div>
+
+                      <div class="col-6">
+                        <label for="date" class="form-label">Submit Date</label>
+                        <input
+                          class="form-control input-fields validation"
+                          data-date-format="DD MMMM YYYY"
+                          id="date"
+                          type="date"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-12">
+                        <label for="task" class="form-label">Task</label>
+                        <input
+                          id="task"
+                          class="form-control input-fields validation"
+                          type="text"
+                          required
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      id="btn-add-new-iteam"
+                      class="btn btn-primary"
+                    >
+                      Save
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Modal box with form end -->
+          </div>
+
+          <div
+            class="tab-pane fade"
+            id="myprofile-section"
+            role="tabpanel"
+          >
+            Here you can find the
+            <a
+              href="https://github.com/smhabibjr/electron-bootstrap-jqeury-fontawesome-boilerplate"
+              target="_blank"
+              >link</a
+            >
+            electron bootstrap jqeury fontawesome boilerplate 🤓
+          </div>
+
+          <div
+            class="tab-pane fade"
+            id="setting-section"
+            role="tabpanel"
+            aria-labelledby="list-aliceandbob-list"
+          >
+            Wanna see a production ready application build with Electron? Go and
+            check
+            <a href="https://habibjr.com/" target="_blank">habibjr.com</a>! 🚀
+          </div>
+
+          <div
+            class="tab-pane fade"
+            id="logout-section"
+            role="tabpanel"
+            aria-labelledby="list-github-list"
+          >
+            and here is my
+            <a href="https://github.com/smhabibjr" target="_blank">Github</a>
+            page 🙏
+          </div>
+        </div>
+
+        <!-- 
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6 p-4 my-auto">
+          <form class="card card-body" id="productForm">
+            <div class="form-group p-2">
+              <input
+                type="text"
+                id="name"
+                placeholder="Product name"
+                class="form-control"
+                autofocus
+              />
+            </div>
+
+            <div class="form-group p-2">
+              <input
+                type="number"
+                id="price"
+                step="any"
+                class="form-control"
+                placeholder="Product price"
+              />
+            </div>
+
+            <div class="form-group p-2">
+              <textarea class="w-100" id="description"></textarea>
+            </div>
+
+            <button class="btn btn-primary">save</button>
+          </form>
+        </div>
+
+        <div class="col-md-6">
+          <div id="products"></div>
+        </div>
+      </div>
+    </div>
+
+    -->
       </div>
     </div>
 
