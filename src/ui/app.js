@@ -1,6 +1,13 @@
 const { remote } = require("electron");
 const main = remote.require("./main");
 
+$(document).ready(function () {
+  $("#sidebar").toggleClass("active");
+  $("#sidebarCollapse").on("click", function () {
+    $("#sidebar").toggleClass("active");
+  });
+});
+
   // grab the modal box
   var modal = document.querySelector("#modalbox-with-form");
   var btn_open_modal_box = document.querySelector("#add-new-task");
@@ -36,6 +43,9 @@ const main = remote.require("./main");
       this.append(dropItem);
     }
   }*/
+
+
+  
 
   $(".drag-and-sortable").sortable({
     connectWith: ".drag-and-sortable",
