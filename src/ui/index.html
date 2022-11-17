@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="./app.css" />
   </head>
   <body>
+  
     <div class="wrapper">
       <!-- Sidebar  -->
       <nav class="bg-secondary text-light" id="sidebar">
@@ -215,7 +216,7 @@
                         </div>
                       </div>
                     </div>
-                    <!-- single iteam end-->
+                    <!-- single itam end-->
                   </div>
                 </div>
               </div>
@@ -267,8 +268,9 @@
               class="clone-new-task d-none card m-1 list-group-item drag-and-sortable"
             >
               <div class="row d-flex justify-content-between">
+                <input type="hidden" id="task_id" value="0">
                 <div class="col-10">
-                  <h6 class="task-category-name">Initial Client Meeting</h6>
+                  <h6 id="task-category-name"></h6>
                 </div>
                 <div class="col-2 d-flex justify-content-end">
                   
@@ -286,7 +288,7 @@
                       <li><a class="dropdown-item" href="#">Edit</a></li>
                       <li><a class="dropdown-item" href="#">Delete</a></li>
                       <li><a class="dropdown-item" href="#">Done</a></li>
-                      <li><a class="dropdown-item" href="#">Move to history</a></li>
+                      
                     </ul>
                   </div>
 
@@ -317,6 +319,7 @@
                     class="rounded-circle"
                     alt="Cinque Terre"
                   />
+                  <div id="task-user-name">Habib</div>
                 </div>
                 <div class="col-6 d-flex justify-content-end">
                   <p class="task-due-date">Due 10 days</p>
@@ -342,36 +345,36 @@
                   <div class="modal-body">
                     <div class="row">
                       <div class="col-4">
-                        <label for="category" class="form-label"
+                        <label for="task-category" class="form-label"
                           >Category</label
                         >
                         <select
                           class="form-select input-fields validation"
-                          id="category"
+                          id="task-category"
                           required
                         >
                           <option selected value="">Choose...</option>
                           <option value="Administration">Administration</option>
-                          <option value="UX/UI Design">UX/UI Design</option>
-                          <option value="Fontend Design">Fontend Design</option>
-                          <option value="Backend">Backend</option>
+                          <option value="Test A/B">UX/UI Design</option>
+                          <option value="Frontend Design">Fontend Design</option>
+                          <option value="backend">Backend</option>
                         </select>
                       </div>
 
                       <div class="col-4">
-                        <label for="category" class="form-label"
+                        <label for="task-user" class="form-label"
                           >assigned to</label
                         >
                         <select
                           class="form-select input-fields validation"
-                          id="category"
+                          id="task-user"
                           required
                         >
                           <option selected value="">Choose...</option>
-                          <option value="Administration">Kosmalla</option>
-                          <option value="UX/UI Design">Salloum</option>
-                          <option value="Fontend Design">Anh</option>
-                          <option value="Backend">Habib</option>
+                          <option value="Kosmalla">Kosmalla</option>
+                          <option value="Salloum">Salloum</option>
+                          <option value="Anh">Anh</option>
+                          <option value="Habib">Habib</option>
                         </select>
                       </div>
 
@@ -391,7 +394,7 @@
                       <div class="col-12">
                         <label for="task" class="form-label">Task</label>
                         <input
-                          id="task"
+                          id="task-name"
                           class="form-control input-fields validation"
                           type="text"
                           required

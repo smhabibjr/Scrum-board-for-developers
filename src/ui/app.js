@@ -1,13 +1,7 @@
-const { remote } = require("electron");
+const { remote, Notification } = require("electron");
 const main = remote.require("./main");
 
-
-
-
-
 $(document).ready(function () {
-
-  main.console_from_main();
 
   $("#sidebar").toggleClass("active");
   $("#sidebarCollapse").on("click", function () {
@@ -16,144 +10,152 @@ $(document).ready(function () {
   });
 });
 
-  // grab the modal box
-  var modal = document.querySelector("#modalbox-with-form");
-  var btn_open_modal_box = document.querySelector("#add-new-task");
-  var btn_modalbox_close = document.querySelector("#btn-modalbox-close");
+// grab the modal box
+var modal = document.querySelector("#modalbox-with-form");
+var btn_open_modal_box = document.querySelector("#add-new-task");
+var btn_modalbox_close = document.querySelector("#btn-modalbox-close");
 
-  $(".drag-and-sortable").sortable({
-    connectWith: ".drag-and-sortable",
-    cursor: "grabbing",
+$(".drag-and-sortable").sortable({
+  connectWith: ".drag-and-sortable",
+  cursor: "grabbing",
+});
+
+//drag_and_drop();
+btn_open_modal_box.onclick = function () {
+  modal.style.display = "block";
+};
+
+btn_modalbox_close.onclick = function () {
+  modal.style.display = "none";
+};
+
+remove_red_border();
+function remove_red_border() {
+  $(".input-fields").on("keyup change", function (e) {
+    $(this).removeClass("validation");
+    $(this).css("border", "solid 1px green");
   });
+}
 
-  //drag_and_drop();
-  btn_open_modal_box.onclick = function () {
-    modal.style.display = "block";
+$("#btn-add-new-iteam").click( async function () {
+  var new_task_data = {
+    task_category: $("#task-category").val(),
+    task_name: $("#task-name").val(),
+    assigned_date: new Date().toLocaleDateString("de-DE"),
+    submit_date: $("#date").val(),
+    employee: $("#task-user").val(),
   };
 
-  btn_modalbox_close.onclick = function () {
-    modal.style.display = "none";
-  };
+  var { task_category, task_name, assigned_date, submit_date, employee } =
+    new_task_data;
 
-  remove_red_border();
-  function remove_red_border() {
-    $(".input-fields").on("keyup change", function (e) {
-      $(this).removeClass("validation");
-      $(this).css("border", "solid 1px green");
-    });
-  }
+  var due_days = getNumberOfDays(
+    current_date(),
+    dateFormat(submit_date, "MM/dd/yyyy")
+  );
 
-  $("#btn-add-new-iteam").click(function () {
-    var form_data = {
-      new_category: $("#category").val(),
-      new_task: $("#task").val(),
-      new_date: $("#date").val(),
-    };
+  if (form_validation()) {
+    var add_new_task = $(".clone-new-task")
+      .clone()
+      .removeClass("clone-new-task d-none");
+    add_new_task.find("#task-category-name").text(task_category);
+    add_new_task.find(".single-task-name").text(task_name);
+    add_new_task
+      .find(".task-assigned-date")
+      .text("Assigned : " + assigned_date);
+    add_new_task
+      .find(".task-submit-date")
+      .text("Submit : " + dateFormat(submit_date, "dd.MM.yyyy"));
+    add_new_task.find("#task-user-name").text(employee);
+    add_new_task.find(".task-due-date").text("Due " + due_days + " days");
+    
 
-    var { new_category, new_task, new_date } = form_data;
+    new_task_data["submit_date"] = dateFormat(submit_date, "dd.MM.yyyy");
+    new_task_data["due_days"] = due_days;
 
-    var due_days = getNumberOfDays(current_date(), dateFormat(new_date, "MM/dd/yyyy"));
-    let german_current_date = new Date().toLocaleDateString("de-DE");
-
-    if (form_validation()) {
-      var add_new_task = $(".clone-new-task")
-        .clone()
-        .removeClass("clone-new-task d-none");
-      add_new_task.find(".task-category-name").text(new_category);
-      add_new_task.find(".single-task-name").text(new_task);
-      add_new_task
-        .find(".task-assigned-date")
-        .text("Assigned : " + german_current_date);
-      add_new_task
-        .find(".task-submit-date")
-        .text("Submit : " + dateFormat(new_date, "dd.MM.yyyy"));
-      add_new_task.find(".task-due-date").text("Due " + due_days + " days");
+    const result = await main.create_new_task(new_task_data);
+    if(result.id){
+      add_new_task.find("#task_id").val(result.id);
       $("#todo-task-list").append(add_new_task);
-      modal.style.display = "none";
-    } else {
+    }else{
+      alert("Someting went wrong!");
     }
-  });
+    modal.style.display = "none";
+  } else {
+  }
+});
 
-  function form_validation() {
-    var val = 0;
-    $(".modalbox-with-form")
-      .find(".validation")
-      .each(function (element, index) {
-        if ($(this).prop("required")) {
-          if ($(this).val() === "") {
-            $(this).css("border", "solid 1px red");
-            val++;
-          }
+function form_validation() {
+  var val = 0;
+  $(".modalbox-with-form")
+    .find(".validation")
+    .each(function (element, index) {
+      if ($(this).prop("required")) {
+        if ($(this).val() === "") {
+          $(this).css("border", "solid 1px red");
+          val++;
         }
-      });
+      }
+    });
 
-    if (val === 0) {
-      return true;
-    } else {
-      return false;
-    }
+  if (val === 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function current_date() {
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, "0");
+  var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  var yyyy = today.getFullYear();
+
+  today = mm + "/" + dd + "/" + yyyy;
+  return today;
+}
+
+//a simple date formatting function
+function dateFormat(inputDate, format) {
+  //parse the input date
+  const date = new Date(inputDate);
+
+  //extract the parts of the date
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+
+  //replace the month
+  format = format.replace("MM", month.toString().padStart(2, "0"));
+
+  //replace the year
+  if (format.indexOf("yyyy") > -1) {
+    format = format.replace("yyyy", year.toString());
+  } else if (format.indexOf("yy") > -1) {
+    format = format.replace("yy", year.toString().substr(2, 2));
   }
 
-  function current_date() {
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, "0");
-    var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-    var yyyy = today.getFullYear();
+  //replace the day
+  format = format.replace("dd", day.toString().padStart(2, "0"));
 
-    today = mm + "/" + dd + "/" + yyyy;
-    return today;
-  }
+  return format;
+}
 
-  //a simple date formatting function
-  function dateFormat(inputDate, format) {
-    //parse the input date
-    const date = new Date(inputDate);
+function getNumberOfDays(start, end) {
+  const date1 = new Date(start);
+  const date2 = new Date(end);
 
-    //extract the parts of the date
-    const day = date.getDate();
-    const month = date.getMonth() + 1;
-    const year = date.getFullYear();
+  // One day in milliseconds
+  const oneDay = 1000 * 60 * 60 * 24;
 
-    //replace the month
-    format = format.replace("MM", month.toString().padStart(2, "0"));
+  // Calculating the time difference between two dates
+  const diffInTime = date2.getTime() - date1.getTime();
 
-    //replace the year
-    if (format.indexOf("yyyy") > -1) {
-      format = format.replace("yyyy", year.toString());
-    } else if (format.indexOf("yy") > -1) {
-      format = format.replace("yy", year.toString().substr(2, 2));
-    }
+  // Calculating the no. of days between two dates
+  const diffInDays = Math.round(diffInTime / oneDay);
 
-    //replace the day
-    format = format.replace("dd", day.toString().padStart(2, "0"));
-
-    return format;
-  }
-
-  function getNumberOfDays(start, end) {
-    const date1 = new Date(start);
-    const date2 = new Date(end);
-
-    // One day in milliseconds
-    const oneDay = 1000 * 60 * 60 * 24;
-
-    // Calculating the time difference between two dates
-    const diffInTime = date2.getTime() - date1.getTime();
-
-    // Calculating the no. of days between two dates
-    const diffInDays = Math.round(diffInTime / oneDay);
-
-    return diffInDays;
-  }
-
-
-
-
-
-
-
-
-
+  return diffInDays;
+}
 
 /*
 const productForm = document.getElementById("productForm");
