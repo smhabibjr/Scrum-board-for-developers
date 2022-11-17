@@ -110,8 +110,6 @@ $(document).ready(function () {
 
   }
 
-
-
   async function init(){
     const get_todo_list = await main.get_todo_tasks();
     show_todo_task(get_todo_list);
