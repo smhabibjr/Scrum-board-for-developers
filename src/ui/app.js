@@ -1,7 +1,14 @@
 const { remote } = require("electron");
 const main = remote.require("./main");
 
+
+
+
+
 $(document).ready(function () {
+
+  main.console_from_main();
+
   $("#sidebar").toggleClass("active");
   $("#sidebarCollapse").on("click", function () {
     $("#collapsible-icon").toggleClass("fa-bars fa-times");
@@ -45,10 +52,8 @@ $(document).ready(function () {
 
     var { new_category, new_task, new_date } = form_data;
 
-    var due_days = getNumberOfDays(
-      current_date(),
-      dateFormat(new_date, "MM/dd/yyyy")
-    );
+    var due_days = getNumberOfDays(current_date(), dateFormat(new_date, "MM/dd/yyyy"));
+    let german_current_date = new Date().toLocaleDateString("de-DE");
 
     if (form_validation()) {
       var add_new_task = $(".clone-new-task")
@@ -56,11 +61,15 @@ $(document).ready(function () {
         .removeClass("clone-new-task d-none");
       add_new_task.find(".task-category-name").text(new_category);
       add_new_task.find(".single-task-name").text(new_task);
-      add_new_task.find(".task-submit-date").text("submit : " + new_date);
+      add_new_task
+        .find(".task-assigned-date")
+        .text("Assigned : " + german_current_date);
+      add_new_task
+        .find(".task-submit-date")
+        .text("Submit : " + dateFormat(new_date, "dd.MM.yyyy"));
       add_new_task.find(".task-due-date").text("Due " + due_days + " days");
       $("#todo-task-list").append(add_new_task);
       modal.style.display = "none";
-      //drag_and_drop();
     } else {
     }
   });
@@ -84,9 +93,6 @@ $(document).ready(function () {
       return false;
     }
   }
-
-
-
 
   function current_date() {
     var today = new Date();

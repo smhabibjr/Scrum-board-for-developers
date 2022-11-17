@@ -1,6 +1,10 @@
 const { BrowserWindow, Notification } = require("electron");
 const { getConnection } = require("./database");
 
+function console_from_main(){
+  console.log("hi there, i'm form main.js");
+}
+
 async function createProduct(product) {
   try{
     const conn = await getConnection();
@@ -46,4 +50,5 @@ module.exports = {
   createWindow,
   createProduct,
   getProducts,
+  console_from_main,
 };
