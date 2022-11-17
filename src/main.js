@@ -24,6 +24,19 @@ async function create_new_task(new_task_data) {
     console.log("new task has been created : " + result); */
 }
 
+
+
+async function get_todo_tasks(){
+  const conn = await getConnection();
+  const result = await  conn.query(
+    "SELECT * FROM scrum_task WHERE stage = 'todo' "
+  );
+  
+  
+  console.log("todo tasks " + JSON.stringify(result));
+  return result;
+}
+
 async function createProduct(product) {
   try {
     const conn = await getConnection();
@@ -67,4 +80,5 @@ module.exports = {
   createProduct,
   getProducts,
   create_new_task,
+  get_todo_tasks,
 };

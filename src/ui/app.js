@@ -2,87 +2,126 @@ const { remote, Notification } = require("electron");
 const main = remote.require("./main");
 
 $(document).ready(function () {
-
   $("#sidebar").toggleClass("active");
   $("#sidebarCollapse").on("click", function () {
     $("#collapsible-icon").toggleClass("fa-bars fa-times");
     $("#sidebar").toggleClass("active");
   });
-});
 
-// grab the modal box
-var modal = document.querySelector("#modalbox-with-form");
-var btn_open_modal_box = document.querySelector("#add-new-task");
-var btn_modalbox_close = document.querySelector("#btn-modalbox-close");
+  // grab the modal box
+  var modal = document.querySelector("#modalbox-with-form");
+  var btn_open_modal_box = document.querySelector("#add-new-task");
+  var btn_modalbox_close = document.querySelector("#btn-modalbox-close");
 
-$(".drag-and-sortable").sortable({
-  connectWith: ".drag-and-sortable",
-  cursor: "grabbing",
-});
-
-//drag_and_drop();
-btn_open_modal_box.onclick = function () {
-  modal.style.display = "block";
-};
-
-btn_modalbox_close.onclick = function () {
-  modal.style.display = "none";
-};
-
-remove_red_border();
-function remove_red_border() {
-  $(".input-fields").on("keyup change", function (e) {
-    $(this).removeClass("validation");
-    $(this).css("border", "solid 1px green");
+  $(".drag-and-sortable").sortable({
+    connectWith: ".drag-and-sortable",
+    cursor: "grabbing",
   });
-}
 
-$("#btn-add-new-iteam").click( async function () {
-  var new_task_data = {
-    task_category: $("#task-category").val(),
-    task_name: $("#task-name").val(),
-    assigned_date: new Date().toLocaleDateString("de-DE"),
-    submit_date: $("#date").val(),
-    employee: $("#task-user").val(),
+  //drag_and_drop();
+  btn_open_modal_box.onclick = function () {
+    modal.style.display = "block";
   };
 
-  var { task_category, task_name, assigned_date, submit_date, employee } =
-    new_task_data;
-
-  var due_days = getNumberOfDays(
-    current_date(),
-    dateFormat(submit_date, "MM/dd/yyyy")
-  );
-
-  if (form_validation()) {
-    var add_new_task = $(".clone-new-task")
-      .clone()
-      .removeClass("clone-new-task d-none");
-    add_new_task.find("#task-category-name").text(task_category);
-    add_new_task.find(".single-task-name").text(task_name);
-    add_new_task
-      .find(".task-assigned-date")
-      .text("Assigned : " + assigned_date);
-    add_new_task
-      .find(".task-submit-date")
-      .text("Submit : " + dateFormat(submit_date, "dd.MM.yyyy"));
-    add_new_task.find("#task-user-name").text(employee);
-    add_new_task.find(".task-due-date").text("Due " + due_days + " days");
-    
-
-    new_task_data["submit_date"] = dateFormat(submit_date, "dd.MM.yyyy");
-    new_task_data["due_days"] = due_days;
-
-    const result = await main.create_new_task(new_task_data);
-    if(result.id){
-      add_new_task.find("#task_id").val(result.id);
-      $("#todo-task-list").append(add_new_task);
-    }else{
-      alert("Someting went wrong!");
-    }
+  btn_modalbox_close.onclick = function () {
     modal.style.display = "none";
-  } else {
+  };
+
+  remove_red_border();
+  function remove_red_border() {
+    $(".input-fields").on("keyup change", function (e) {
+      $(this).removeClass("validation");
+      $(this).css("border", "solid 1px green");
+    });
   }
+
+  $("#btn-add-new-iteam").click(async function () {
+    var new_task_data = {
+      task_category: $("#task-category").val(),
+      task_name: $("#task-name").val(),
+      assigned_date: new Date().toLocaleDateString("de-DE"),
+      submit_date: $("#date").val(),
+      employee: $("#task-user").val(),
+      stage: $("#stage").val(),
+    };
+
+    var { task_category, task_name, assigned_date, submit_date, employee } =
+      new_task_data;
+
+    var due_days = getNumberOfDays(
+      current_date(),
+      dateFormat(submit_date, "MM/dd/yyyy")
+    );
+
+    if (form_validation()) {
+      var add_new_task = $(".clone-new-task")
+        .clone()
+        .removeClass("clone-new-task d-none");
+      add_new_task.find("#task-category-name").text(task_category);
+      add_new_task.find(".single-task-name").text(task_name);
+      add_new_task
+        .find(".task-assigned-date")
+        .text("Assigned : " + assigned_date);
+      add_new_task
+        .find(".task-submit-date")
+        .text("Submit : " + dateFormat(submit_date, "dd.MM.yyyy"));
+      add_new_task.find("#task-user-name").text(employee);
+      add_new_task.find(".task-due-date").text("Due " + due_days + " days");
+
+      new_task_data["submit_date"] = dateFormat(submit_date, "dd.MM.yyyy");
+      new_task_data["due_days"] = due_days;
+
+      const result = await main.create_new_task(new_task_data);
+      if (result.id) {
+        add_new_task.find("#task_id").val(result.id);
+        $("#todo-task-list").append(add_new_task);
+      } else {
+        alert("Someting went wrong!");
+      }
+      modal.style.display = "none";
+    } else {
+    }
+  });
+
+  function show_todo_task(get_todo_list){
+    
+    if(get_todo_list.length > 0){
+      get_todo_list.forEach(task => {
+        var add_new_task = $(".clone-new-task")
+          .clone()
+          .removeClass("clone-new-task d-none");
+        add_new_task.find("#task-category-name").text(task.task_category);
+        add_new_task.find(".single-task-name").text(task.task_name);
+        add_new_task
+          .find(".task-assigned-date")
+          .text("Assigned : " + task.assigned_date);
+        add_new_task
+          .find(".task-submit-date")
+          .text("Submit : " + task.submit_date);
+        add_new_task.find("#task-user-name").text(task.employee);
+        add_new_task.find(".task-due-date").text("Due " + task.due_days + " days");
+        add_new_task.find("#stage").val(task.stage);
+        add_new_task.find("#task_id").val(task.id);
+        $("#todo-task-list").append(add_new_task);
+
+        console.log("task name end clone" + task.task_name);
+      });
+    }
+
+  }
+
+
+
+  async function init(){
+    const get_todo_list = await main.get_todo_tasks();
+    show_todo_task(get_todo_list);
+    
+  }
+
+  init();
+
+
+
 });
 
 function form_validation() {
