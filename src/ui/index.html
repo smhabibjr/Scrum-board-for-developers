@@ -64,7 +64,7 @@
       <div id="content">
         <div class="row p-2 bg-secondary content-navbar">
           <div class="col-6">
-            <div type="button" id="sidebarCollapse" class="btn btn-dark">
+            <div type="button" id="sidebarCollapse" class="btn btn-secondary">
               <i id="collapsible-icon" class="fa-solid fa-bars"></i>
             </div>
           </div>
@@ -99,7 +99,7 @@
               <div class="col-3">
                 <div class="bg-secondary card">
                   <h5 class="d-flex justify-content-center text-white p-1">
-                    TODO (2)
+                    TODO&nbsp;(<span class="has-children"></span> )
                   </h5>
 
                   <div
@@ -118,12 +118,12 @@
               <div class="col-3">
                 <div class="bg-secondary card">
                   <h5 class="d-flex justify-content-center text-white p-1">
-                    IN PROGRESS (2)
+                    IN PROGRESS &nbsp;(<span class="has-children"></span> )
                   </h5>
 
                   <div
                     id="in-progress-list"
-                    class="list-group drag-and-sortable inprogress"
+                    class="list-group drag-and-sortable"
                     style="min-height: 100px"
                   >
 
@@ -135,7 +135,7 @@
               <div class="col-3">
                 <div class="bg-secondary card">
                   <h5 class="d-flex justify-content-center text-white p-1">
-                    REVIEW (2)
+                    REVIEW &nbsp;(<span class="has-children"></span> )
                   </h5>
 
                   <div
@@ -151,7 +151,7 @@
               <div class="col-3">
                 <div class="bg-secondary card">
                   <h5 class="d-flex justify-content-center text-white p-1">
-                    DONE (2)
+                    DONE &nbsp;(<span class="has-children"></span> )
                   </h5>
 
                   <div
@@ -167,7 +167,7 @@
 
             <!-- single clone item -->
             <div
-              class="clone-new-task d-none card m-1 list-group-item"
+              class="clone-new-task d-none card m-1 list-group-item single-task"
             >
               <div class="row d-flex justify-content-between">
                 <input type="hidden" id="task_id" value="0">

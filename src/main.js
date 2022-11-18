@@ -10,10 +10,7 @@ async function create_new_task(new_task_data) {
     "INSERT INTO scrum_task SET ?",
     new_task_data
   );
-  console.log("new task has been created : " + JSON.stringify(result));
-
   new_task_data.id = result.insertId;
-
   return new_task_data;
   }catch(error){
     console.log(error);
@@ -66,7 +63,7 @@ async function update_task_stage(task_id, task_stage){
 
   conn.query(sql,sqlParams, function (err, result) {
     if (err) throw err;
-    console.log(result.affectedRows + " record(s) updated");
+    //console.log(result.affectedRows + " record(s) updated");
   });
   }catch(err){
     console.log(err);

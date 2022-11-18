@@ -8,12 +8,15 @@ $(document).ready(function () {
     $("#sidebar").toggleClass("active");
   });
 
+
+  
+
+
   // grab the modal box
   var modal = document.querySelector("#modalbox-with-form");
   var btn_open_modal_box = document.querySelector("#add-new-task");
   var btn_modalbox_close = document.querySelector("#btn-modalbox-close");
 
-  
   $(".drag-and-sortable").sortable({
     connectWith: ".drag-and-sortable",
     cursor: "grabbing",
@@ -22,11 +25,9 @@ $(document).ready(function () {
       const task_stage = $(ui.item).closest(".drag-and-sortable").attr("id");
       const find_stage = $(ui.item).find("#stage").val(task_stage);
       main.update_task_stage(task_id, task_stage);
-      console.log($(ui.item).find("#task_id").val());
-      console.log($(ui.item).closest(".drag-and-sortable").attr("id"));
+      update_list_children();
     },
   });
-
 
   //drag_and_drop();
   btn_open_modal_box.onclick = function () {
@@ -118,81 +119,80 @@ $(document).ready(function () {
     }
   }
 
-   function render_progress_task(get_progress_list) {
-     if (get_progress_list.length > 0) {
-       get_progress_list.forEach((task) => {
-         var add_new_task = $(".clone-new-task")
-           .clone()
-           .removeClass("clone-new-task d-none");
-         add_new_task.find("#task-category-name").text(task.task_category);
-         add_new_task.find(".single-task-name").text(task.task_name);
-         add_new_task
-           .find(".task-assigned-date")
-           .text("Assigned : " + task.assigned_date);
-         add_new_task
-           .find(".task-submit-date")
-           .text("Submit : " + task.submit_date);
-         add_new_task.find("#task-user-name").text(task.employee);
-         add_new_task
-           .find(".task-due-date")
-           .text("Due " + task.due_days + " days");
-         add_new_task.find("#stage").val(task.stage);
-         add_new_task.find("#task_id").val(task.id);
-         $("#in-progress-list").append(add_new_task);
-       });
-     }
-   }
-
-
-    function render_review_task(get_preview_list) {
-      if (get_preview_list.length > 0) {
-        get_preview_list.forEach((task) => {
-          var add_new_task = $(".clone-new-task")
-            .clone()
-            .removeClass("clone-new-task d-none");
-          add_new_task.find("#task-category-name").text(task.task_category);
-          add_new_task.find(".single-task-name").text(task.task_name);
-          add_new_task
-            .find(".task-assigned-date")
-            .text("Assigned : " + task.assigned_date);
-          add_new_task
-            .find(".task-submit-date")
-            .text("Submit : " + task.submit_date);
-          add_new_task.find("#task-user-name").text(task.employee);
-          add_new_task
-            .find(".task-due-date")
-            .text("Due " + task.due_days + " days");
-          add_new_task.find("#stage").val(task.stage);
-          add_new_task.find("#task_id").val(task.id);
-          $("#in-review-list").append(add_new_task);
-        });
-      }
+  function render_progress_task(get_progress_list) {
+    if (get_progress_list.length > 0) {
+      get_progress_list.forEach((task) => {
+        var add_new_task = $(".clone-new-task")
+          .clone()
+          .removeClass("clone-new-task d-none");
+        add_new_task.find("#task-category-name").text(task.task_category);
+        add_new_task.find(".single-task-name").text(task.task_name);
+        add_new_task
+          .find(".task-assigned-date")
+          .text("Assigned : " + task.assigned_date);
+        add_new_task
+          .find(".task-submit-date")
+          .text("Submit : " + task.submit_date);
+        add_new_task.find("#task-user-name").text(task.employee);
+        add_new_task
+          .find(".task-due-date")
+          .text("Due " + task.due_days + " days");
+        add_new_task.find("#stage").val(task.stage);
+        add_new_task.find("#task_id").val(task.id);
+        $("#in-progress-list").append(add_new_task);
+      });
     }
+  }
 
-     function render_done_task(get_done_list) {
-       if (get_done_list.length > 0) {
-         get_done_list.forEach((task) => {
-           var add_new_task = $(".clone-new-task")
-             .clone()
-             .removeClass("clone-new-task d-none");
-           add_new_task.find("#task-category-name").text(task.task_category);
-           add_new_task.find(".single-task-name").text(task.task_name);
-           add_new_task
-             .find(".task-assigned-date")
-             .text("Assigned : " + task.assigned_date);
-           add_new_task
-             .find(".task-submit-date")
-             .text("Submit : " + task.submit_date);
-           add_new_task.find("#task-user-name").text(task.employee);
-           add_new_task
-             .find(".task-due-date")
-             .text("Due " + task.due_days + " days");
-           add_new_task.find("#stage").val(task.stage);
-           add_new_task.find("#task_id").val(task.id);
-           $("#in-done-list").append(add_new_task);
-         });
-       }
-     }
+  function render_review_task(get_preview_list) {
+    if (get_preview_list.length > 0) {
+      get_preview_list.forEach((task) => {
+        var add_new_task = $(".clone-new-task")
+          .clone()
+          .removeClass("clone-new-task d-none");
+        add_new_task.find("#task-category-name").text(task.task_category);
+        add_new_task.find(".single-task-name").text(task.task_name);
+        add_new_task
+          .find(".task-assigned-date")
+          .text("Assigned : " + task.assigned_date);
+        add_new_task
+          .find(".task-submit-date")
+          .text("Submit : " + task.submit_date);
+        add_new_task.find("#task-user-name").text(task.employee);
+        add_new_task
+          .find(".task-due-date")
+          .text("Due " + task.due_days + " days");
+        add_new_task.find("#stage").val(task.stage);
+        add_new_task.find("#task_id").val(task.id);
+        $("#in-review-list").append(add_new_task);
+      });
+    }
+  }
+
+  function render_done_task(get_done_list) {
+    if (get_done_list.length > 0) {
+      get_done_list.forEach((task) => {
+        var add_new_task = $(".clone-new-task")
+          .clone()
+          .removeClass("clone-new-task d-none");
+        add_new_task.find("#task-category-name").text(task.task_category);
+        add_new_task.find(".single-task-name").text(task.task_name);
+        add_new_task
+          .find(".task-assigned-date")
+          .text("Assigned : " + task.assigned_date);
+        add_new_task
+          .find(".task-submit-date")
+          .text("Submit : " + task.submit_date);
+        add_new_task.find("#task-user-name").text(task.employee);
+        add_new_task
+          .find(".task-due-date")
+          .text("Due " + task.due_days + " days");
+        add_new_task.find("#stage").val(task.stage);
+        add_new_task.find("#task_id").val(task.id);
+        $("#in-done-list").append(add_new_task);
+      });
+    }
+  }
 
   async function init() {
     const get_todo_list = await main.get_todo_tasks();
@@ -203,9 +203,22 @@ $(document).ready(function () {
     render_progress_task(get_progress_list);
     render_review_task(get_review_list);
     render_done_task(get_done_list);
+
+    update_list_children();
+
+    
+
   }
   init();
 });
+
+
+function update_list_children() {
+  $(".drag-and-sortable").each(function () {
+    const children_ = $(this).children(".single-task").length;
+    $(this).closest(".card").find(".has-children").text(children_);
+  });
+}
 
 function form_validation() {
   var val = 0;
