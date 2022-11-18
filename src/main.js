@@ -4,7 +4,6 @@ const { getConnection } = require("./database");
 
 async function create_new_task(new_task_data) {
   try{
-    console.log("hi there" + JSON.stringify(new_task_data));
   const conn = await getConnection();
   const result = await conn.query(
     "INSERT INTO scrum_task SET ?",
@@ -70,6 +69,21 @@ async function update_task_stage(task_id, task_stage){
   }
 }
 
+
+async function delete_single_task(delete_task_id) {
+  try{
+    const conn = await getConnection();
+    const sqlParams = [delete_task_id];
+    const sql = "DELETE FROM scrum_task WHERE id = ?";
+    conn.query(sql, sqlParams, function (err, result) {
+      if (err) throw err;
+      console.log(result.affectedRows + " records deleted ");
+    });
+  }catch(err){
+    console.log(err);
+  }
+}
+
 async function createProduct(product) {
   try {
     const conn = await getConnection();
@@ -118,4 +132,5 @@ module.exports = {
   get_review_tasks,
   get_done_tasks,
   update_task_stage,
+  delete_single_task,
 };

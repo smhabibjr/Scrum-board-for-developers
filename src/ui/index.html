@@ -7,18 +7,16 @@
     <title>Scrum Board</title>
     <link rel="stylesheet" href="./UI-dependencies/bootstrap.min.css" />
     <link rel="stylesheet" href="./UI-dependencies/jquery-ui-1.13.2.css" />
+    <link rel="stylesheet" href="./UI-dependencies/jquery-confirm-3.3.2.css">
+
     <script src="./UI-dependencies/popper.min.js"></script>
     <script src="./UI-dependencies/bootstrap.bundle.min.js"></script>
     <script src="./UI-dependencies/jquery-3.6.1.min.js"></script>
-    <script>
-      window.$ =
-        window.jQuery = require("./UI-dependencies/jquery-3.6.1.min.js");
-    </script>
+    <script>window.$ = window.jQuery = require("./UI-dependencies/jquery-3.6.1.min.js");</script>
     <script src="./UI-dependencies/jquery-ui-1.13.2.js"></script>
-    <script
-      src="https://kit.fontawesome.com/ea63e2648f.js"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://kit.fontawesome.com/ea63e2648f.js"></script>
+
+    <script src="./UI-dependencies/jquery-confirm-3.3.2.js"></script>
     <link rel="stylesheet" href="./app.css" />
   </head>
   <body>
@@ -171,7 +169,7 @@
             >
               <div class="row d-flex justify-content-between">
                 <input type="hidden" id="task_id" value="0">
-                <input type="hidden" id="stage" value="todo-task-list">
+                <input type="hidden" id="stage" value="in-todo-list">
                 <div class="col-10">
                   <h6 id="task-category-name"></h6>
                 </div>
@@ -188,9 +186,9 @@
                     
                   </i>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Edit</a></li>
-                      <li><a class="dropdown-item" href="#">Delete</a></li>
-                      <li><a class="dropdown-item" href="#">Done</a></li>
+                      <li><a class="dropdown-item task-edit" href="#">Edit</a></li>
+                      <li><a class="dropdown-item task-delete" href="#">Delete</a></li>
+                      <li><a class="dropdown-item task-move-to-history" href="#">Move to History</a></li>
                       
                     </ul>
                   </div>

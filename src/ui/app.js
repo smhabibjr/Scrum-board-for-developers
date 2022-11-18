@@ -8,10 +8,6 @@ $(document).ready(function () {
     $("#sidebar").toggleClass("active");
   });
 
-
-  
-
-
   // grab the modal box
   var modal = document.querySelector("#modalbox-with-form");
   var btn_open_modal_box = document.querySelector("#add-new-task");
@@ -86,6 +82,7 @@ $(document).ready(function () {
       if (result.id) {
         add_new_task.find("#task_id").val(result.id);
         $("#in-todo-list").append(add_new_task);
+        delete_task();
       } else {
         alert("Someting went wrong!");
       }
@@ -206,12 +203,26 @@ $(document).ready(function () {
 
     update_list_children();
 
+    delete_task();
     
-
   }
   init();
 });
 
+
+  function delete_task() {
+    $(".task-delete").each(function () {
+      $(this).click(async function () {
+        const delete_task_id = $(this)
+          .closest(".single-task")
+          .find("#task_id")
+          .val();
+
+        main.delete_single_task(delete_task_id);
+        $(this).closest(".single-task").remove();
+      });
+    });
+  }
 
 function update_list_children() {
   $(".drag-and-sortable").each(function () {
