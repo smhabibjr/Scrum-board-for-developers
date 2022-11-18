@@ -103,10 +103,13 @@
                   </h5>
 
                   <div
-                    id="todo-task-list"
+                    id="in-todo-list"
                     class="list-group drag-and-sortable"
                     style="min-height: 100px"
                   >
+                  <!-- single todo task goes to there  -->
+
+        
                     
                   </div>
                 </div>
@@ -119,37 +122,13 @@
                   </h5>
 
                   <div
-                    id="inprogress-list"
-                    class="list-group drag-and-sortable"
+                    id="in-progress-list"
+                    class="list-group drag-and-sortable inprogress"
                     style="min-height: 100px"
                   >
-                    <!-- single iteam -->
-                    <div class="card m-1 list-group-item">
-                      <div class="row d-flex justify-content-between">
-                        <div class="col-10">
-                          <h6>Frontend</h6>
-                        </div>
-                        <div class="col-2">
-                          <i class="fas fa-ellipsis-vertical"></i>
-                        </div>
-                      </div>
 
-                      <div class="row">
-                        <div class="col-12">
-                          <h5>Email Template</h5>
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col-6">
-                          <p>submit : 25.10.2022</p>
-                        </div>
-                        <div class="col-6 d-flex justify-content-end">
-                          <p>Due 10 days</p>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- single iteam end-->
+                  <!-- single progress task goes to there  -->
+                    
                   </div>
                 </div>
               </div>
@@ -160,37 +139,12 @@
                   </h5>
 
                   <div
-                    id="preview-list"
+                    id="in-review-list"
                     class="list-group drag-and-sortable"
                     style="min-height: 100px"
                   >
-                    <!-- single iteam -->
-                    <div class="card m-1 list-group-item">
-                      <div class="row d-flex justify-content-between">
-                        <div class="col-10">
-                          <h6>Backend</h6>
-                        </div>
-                        <div class="col-2">
-                          <i class="fas fa-ellipsis-vertical"></i>
-                        </div>
-                      </div>
+                   <!-- single review goes to there  -->
 
-                      <div class="row">
-                        <div class="col-12">
-                          <h5>Email CRUD</h5>
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col-6">
-                          <p>submit : 25.10.2022</p>
-                        </div>
-                        <div class="col-6 d-flex justify-content-end">
-                          <p>Due 10 days</p>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- single itam end-->
                   </div>
                 </div>
               </div>
@@ -201,37 +155,11 @@
                   </h5>
 
                   <div
-                    id="done-list"
+                    id="in-done-list"
                     class="list-group drag-and-sortable"
                     style="min-height: 100px"
                   >
-                    <!-- single iteam -->
-                    <div class="card m-1 list-group-item task-item">
-                      <div class="row d-flex justify-content-between">
-                        <div class="col-10">
-                          <h6>Initial Client Meeting</h6>
-                        </div>
-                        <div class="col-2">
-                          <i class="fas fa-ellipsis-vertical"></i>
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col-12">
-                          <h5>This is task name</h5>
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col-6">
-                          <p>submit : 25.10.2022</p>
-                        </div>
-                        <div class="col-6 d-flex justify-content-end">
-                          <p>Due 10 days</p>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- single iteam end-->
+                    
                   </div>
                 </div>
               </div>
@@ -239,11 +167,11 @@
 
             <!-- single clone item -->
             <div
-              class="clone-new-task d-none card m-1 list-group-item drag-and-sortable"
+              class="clone-new-task d-none card m-1 list-group-item"
             >
               <div class="row d-flex justify-content-between">
                 <input type="hidden" id="task_id" value="0">
-                <input type="hidden" id="stage" value="todo">
+                <input type="hidden" id="stage" value="todo-task-list">
                 <div class="col-10">
                   <h6 id="task-category-name"></h6>
                 </div>

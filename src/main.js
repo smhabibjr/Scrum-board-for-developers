@@ -18,23 +18,59 @@ async function create_new_task(new_task_data) {
   }catch(error){
     console.log(error);
   }
-
-  /*
-    const result = conn.query('INSERT INTO scrum_task SET ?', );
-    console.log("new task has been created : " + result); */
 }
-
-
 
 async function get_todo_tasks(){
   const conn = await getConnection();
-  const result = await  conn.query(
-    "SELECT * FROM scrum_task WHERE stage = 'todo' "
+  const result = await conn.query(
+    "SELECT * FROM scrum_task WHERE stage = 'in-todo-list' "
   );
-  
-  
-  console.log("todo tasks " + JSON.stringify(result));
+
   return result;
+}
+
+async function get_progress_tasks() {
+  const conn = await getConnection();
+  const result = await conn.query(
+    "SELECT * FROM scrum_task WHERE stage = 'in-progress-list' "
+  );
+
+  return result;
+}
+
+
+async function get_review_tasks() {
+  const conn = await getConnection();
+  const result = await conn.query(
+    "SELECT * FROM scrum_task WHERE stage = 'in-review-list' "
+  );
+
+  return result;
+}
+
+async function get_done_tasks() {
+  const conn = await getConnection();
+  const result = await conn.query(
+    "SELECT * FROM scrum_task WHERE stage = 'in-done-list' "
+  );
+
+  return result;
+}
+
+
+async function update_task_stage(task_id, task_stage){
+  try{
+    const conn = await getConnection();
+   sqlParams = [task_stage, task_id];
+   var sql = "UPDATE scrum_task SET stage = ? WHERE id = ?";
+
+  conn.query(sql,sqlParams, function (err, result) {
+    if (err) throw err;
+    console.log(result.affectedRows + " record(s) updated");
+  });
+  }catch(err){
+    console.log(err);
+  }
 }
 
 async function createProduct(product) {
@@ -81,4 +117,8 @@ module.exports = {
   getProducts,
   create_new_task,
   get_todo_tasks,
+  get_progress_tasks,
+  get_review_tasks,
+  get_done_tasks,
+  update_task_stage,
 };
